@@ -16,7 +16,7 @@ namespace resturant.productApi.DbContexts
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Product>().HasData(new Product
             {
-                ProductId = 1,
+                ProductId = 4,
                 Name = "sama",
                 Price=15,
                 Description="dddd hhhhh dddd fffff",
@@ -25,7 +25,7 @@ namespace resturant.productApi.DbContexts
             }) ;
             modelBuilder.Entity<Product>().HasData(new Product
             {
-                ProductId = 2,
+                ProductId = 6,
                 Name = "rewan",
                 Price = 15,
                 Description = "dddd hhhhh dddd fffff",
@@ -34,7 +34,7 @@ namespace resturant.productApi.DbContexts
             });
             modelBuilder.Entity<Product>().HasData(new Product
             {
-                ProductId = 3,
+                ProductId = 8,
                 Name = "menna",
                 Price = 15,
                 Description = "dddd hhhhh dddd fffff",
@@ -43,7 +43,7 @@ namespace resturant.productApi.DbContexts
             });
             modelBuilder.Entity<Product>().HasData(new Product
             {
-                ProductId = 4,
+                ProductId = 10,
                 Name = "ahmed",
                 Price = 15,
                 Description = "dddd hhhhh dddd fffff",

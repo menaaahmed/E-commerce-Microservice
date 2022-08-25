@@ -3,31 +3,71 @@ using Resturant.web.services.IServices;
 
 namespace Resturant.web.services
 {
-    public class productService : IProductService
+    public class productService : BaseService , IProductService
     {
-        public Task<T> CreateProductsAsync<T>(ProductDto ProductDto)
+        private readonly IHttpClientFactory _ClientFactory;
+
+        public productService(IHttpClientFactory ClientFactory) : base(ClientFactory)
         {
-            throw new NotImplementedException();
+            _ClientFactory = ClientFactory;
+
         }
 
-        public Task<T> DeleteProductsAsync<T>(int id)
+        public async Task<T> CreateProductsAsync<T>(ProductDto ProductDto)
         {
-            throw new NotImplementedException();
+            return await this.sendAsync<T>(new ApiRequest()
+            {
+                ApiType=SD.ApiType.POST,
+                Data=ProductDto,
+                Url=SD.productApiBase + "api/products",
+                AccessToken=""
+
+            });
         }
 
-        public Task<T> GetAllProductsAsync<T>()
+        public async Task<T> DeleteProductsAsync<T>(int id)
         {
-            throw new NotImplementedException();
+            return await this.sendAsync<T>(new ApiRequest()
+            {
+                ApiType = SD.ApiType.DELETE,
+                Url = SD.productApiBase + "api/products/"+id,
+                AccessToken = ""
+
+            });
         }
 
-        public Task<T> GetProductsByIdAsync<T>(int id)
+        public async Task<T> GetAllProductsAsync<T>()
         {
-            throw new NotImplementedException();
+            return await this.sendAsync<T>(new ApiRequest()
+            {
+                ApiType = SD.ApiType.GET,
+                Url = SD.productApiBase + "api/products" ,
+                AccessToken = ""
+
+            });
         }
 
-        public Task<T> UpdateProductsAsync<T>(ProductDto ProductDto)
+        public async Task<T> GetProductsByIdAsync<T>(int id)
         {
-            throw new NotImplementedException();
+            return await this.sendAsync<T>(new ApiRequest()
+            {
+                ApiType = SD.ApiType.GET,
+                Url = SD.productApiBase + "api/products/"+id,
+                AccessToken = ""
+
+            });
+        }
+
+        public async Task<T> UpdateProductsAsync<T>(ProductDto ProductDto)
+        {
+            return await this.sendAsync<T>(new ApiRequest()
+            {
+                ApiType = SD.ApiType.PUT,
+                Data = ProductDto,
+                Url = SD.productApiBase + "api/products",
+                AccessToken = ""
+
+            });
         }
     }
 }

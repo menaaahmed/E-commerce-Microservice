@@ -1,3 +1,6 @@
+using Resturant.web.services;
+using Resturant.web.services.IServices;
+
 namespace Resturant.web
 {
     public class Program
@@ -7,6 +10,10 @@ namespace Resturant.web
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddHttpClient<IProductService, productService>();
+            SD.productApiBase = builder.Configuration["ServiceUrls:ProductApi"];
+            builder.Services.AddScoped<IProductService, productService>();
+
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
